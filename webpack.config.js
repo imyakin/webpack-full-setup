@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 let mode = 'development';
 
@@ -9,8 +10,14 @@ if(process.env.NODE_ENV){
 module.exports = {
     mode: mode,
 
+    plugins: [new MiniCssExtractPlugin()],
+
     module: {
         rules: [
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader']
+            },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -27,5 +34,7 @@ module.exports = {
         },
         compress: true,
         port: 8080,
-    }
+    },
+
+    devtool: 'source-map'
 }
