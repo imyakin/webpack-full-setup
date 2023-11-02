@@ -1,14 +1,6 @@
-import './styles/index.scss'
+import { createRoot } from 'react-dom/client';
+import App from './App';
 
-const obj = {
-    a: 'smth',
-    b: 10
-}
-
-const obj2 = {
-    ...obj,
-    c: 10
-}
-
-console.log(obj);
-console.log(obj2);
+const domNode = document.getElementById('root');
+const root =  createRoot(domNode);
+root.render(<App/>);
