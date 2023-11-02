@@ -10,10 +10,18 @@ if (process.env.NODE_ENV) {
 module.exports = {
   mode: mode,
 
+  output: {
+    assetModuleFilename: "images/[hash][ext][query]"
+  },
+
   plugins: [new MiniCssExtractPlugin()],
 
   module: {
     rules: [
+      {
+        test: /\.(png|svg|jpeg|gif)/,
+        type: "asset",
+      },
       {
         test: /\.(s[ac]|c)ss$/,
         use: [
@@ -45,6 +53,6 @@ module.exports = {
   devtool: "source-map",
 
   resolve: {
-    extensions: [".js", ".jsx"]
-  }
+    extensions: [".js", ".jsx"],
+  },
 };
