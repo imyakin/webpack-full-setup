@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
 
 module.exports = {
   mode: mode,
-
+  entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "public"),
     assetModuleFilename: "images/[hash][ext][query]",
@@ -44,6 +44,7 @@ module.exports = {
           "sass-loader",
         ],
       },
+      { test: /\.tsx?$/, exclude: /node_modules/, loader: "ts-loader" },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
@@ -66,6 +67,6 @@ module.exports = {
   devtool: "source-map",
 
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
   },
 };
